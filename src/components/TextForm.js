@@ -18,15 +18,32 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    props.showAlert("Text copied to clipboard", "success");
+  };
+
+  const handleDelete = () => {
+    setText("");
+    props.showAlert("Text cleared", "success");
+  };
+
+  const handleSpeak = () => {
+    let msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    window.speechSynthesis.speak(msg);
+    props.showAlert("Text is being read aloud", "success");
+  };
+
   // const handlecopy = () => {
   //   var text = document.getElementById("myBox");
   //   text.select("");
   //   navigator.clipboard.writeText(text.value);
   // }
 
-  const handleExtraSpaces = () => {
+  function handleExtraSpaces() {
     let newText = text.split(/[ ]+/);
-    setText(newText.join(" "))
+    setText(newText.join(" "));
   }
 
   const [text, setText] = useState("");
@@ -54,6 +71,16 @@ export default function TextForm(props) {
         <button className="btn btn-danger mx-2 my-2" onClick={handlelowClick}>
           CONVERT TO lower case
         </button>
+
+        <button className="btn btn-danger mx-1 my-1" onClick={handleCopy}>
+          Copy Text
+        </button>
+
+        <button className="btn btn-danger mx-1 my-1" onClick={handleDelete}>
+          Clear Text
+        </button>
+
+        <button className="btn btn-danger mx-1 my-1" onClick={handleSpeak}>Speak Text</button>
 
 
         {/* <button className="btn btn-danger mx-2 my-2" onClick={handlecopy}>
