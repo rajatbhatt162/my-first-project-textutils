@@ -46,7 +46,7 @@ function App() {
   }
   return (
     <>
-      <Navbar title="Text Analyzer" mode={mode} toggleMode={toggleMode}/>
+      <Navbar title="best Analyzer" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert}/>
       <div className="container">
       <TextForm showAlert={showAlert} Heading="Enter The Text To Analyze" mode={mode} />
